@@ -75,7 +75,7 @@ export const patch = (
     });
 };
 
-//The DELETE method is used to delete a resource specified by its URI.
+//The DELETE method is used to delete a resource specified by its URL.
 export const del = (url: string): void => {
   fetch(url, {
     method: "DELETE",

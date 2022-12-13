@@ -12,11 +12,11 @@ import { useNavigate } from "react-router-dom";
 import "./Login.module.css";
 import styles from "./Login.module.css";
 
-const Login = () => {
+const Login= () => {
   const navigate = useNavigate();
 
   interface user {
-    admin: string | number;
+    username: string | number;
     password: string;
   }
 
@@ -27,7 +27,7 @@ const Login = () => {
     type: string;
   }
 
-  const [data, setData] = useState<user>({ admin: "", password: "" });
+  const [data, setData] = useState<user>({ username: "", password: "" });
   const [toast, setToast] = useState<toastData>({
     logged: false,
     open: false,
@@ -39,7 +39,7 @@ const Login = () => {
   const formData = (e: any) => {
     e.preventDefault();
     fetch(
-      `https://fbapi.sellernext.com/user/login?username=${data.admin}&password=${data.password}`,
+      `https://fbapi.sellernext.com/user/login?username=${data.username}&password=${data.password}`,
       {
         method: "POST",
         headers: {
@@ -50,7 +50,6 @@ const Login = () => {
     )
       .then((response) => response.json())
       .then((info) => {
-        console.log(info);
         sessionStorage.setItem(`auth_token_${new Date().toLocaleString()}`,info.data.token); //session storage
         if (info.success===true) {
           navigate("/panel/dashboard"); //navigating to dashboard page
@@ -82,11 +81,11 @@ const Login = () => {
         <form onSubmit={formData}>
           <FormElement>
             <TextField
-              name="Admin"
+              name="username"
               required
-              onChange={(val) => setData({ ...data, admin: val })}
+              onChange={(val) => setData({ ...data, username: val })}
               placeHolder="Enter username"
-              value={data.admin}
+              value={data.username}
             />
             <TextField
               name="Enter Password"
@@ -117,9 +116,6 @@ const Login = () => {
         )}
       </Card>
     </div>
-    {/* <Routes>
-      <Route  exact path={props.match.path}></Route>
-    </Routes> */}
     </>
   );
 };

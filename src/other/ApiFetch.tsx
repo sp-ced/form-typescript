@@ -3,8 +3,10 @@ import { del, get, patch, post, put } from "../request/Request";
 
 const ApiFetch = () => {
   useEffect(() => {
+    //get method for api
     get("https://jsonplaceholder.typicode.com/todos?_limit=10");
 
+    //post method for api
     post(
       "https://jsonplaceholder.typicode.com/todos?_limit=10",
       JSON.stringify({
@@ -13,6 +15,7 @@ const ApiFetch = () => {
       })
     );
 
+    //put method for api
     put(
       "https://jsonplaceholder.typicode.com/todos/5",
       JSON.stringify({
@@ -21,6 +24,7 @@ const ApiFetch = () => {
       })
     );
 
+    //patch method for api
     patch(
       "https://jsonplaceholder.typicode.com/todos/1",
       JSON.stringify({
@@ -29,6 +33,7 @@ const ApiFetch = () => {
       })
     );
 
+    //delete method for api
     del("https://jsonplaceholder.typicode.com/todos/1");
   }, []);
 
